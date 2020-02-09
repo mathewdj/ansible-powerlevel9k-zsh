@@ -1,0 +1,42 @@
+---
+    # Based on https://medium.freecodecamp.org/how-you-can-style-your-terminal-like-medium-freecodecamp-or-any-way-you-want-f499234d48bc
+    - name: "Install zsh. Run 'chsh -s /bin/zsh' to set zsh as default shell"
+      homebrew:
+        name: zsh
+        state: latest
+    
+    - name:
+      copy:
+        src: "files/{{ item.src }}"
+        dest: "{{ lookup('env', 'HOME') }}/{{ item.dest }}"
+      with_items:
+        - { src: "zshrc.sh", dest: ".zshrc"  }
+    
+    - name: "Create {{ lookup('env', 'HOME') }}/powerlevel9k"
+      file:
+        dest: "{{ lookup('env', 'HOME') }}/powerlevel9k"
+        state: directory
+    
+    - name: Clone powerlevel9k
+      git:
+        repo: "https://github.com/bhilburn/powerlevel9k.git"
+        dest: "{{ lookup('env', 'HOME') }}/powerlevel9k"
+    
+    - name: Tap homebrew/cask-fonts
+      homebrew_tap:
+        name: homebrew/cask-fonts
+        state: present  
+
+    - name: font-hack-nerd-font
+      homebrew_cask:
+        name: font-hack-nerd-font
+        state: latest
+
+    - name: Tap caskroom/cask
+      homebrew_tap:
+        name: caskroom/cask
+        state: present
+  
+    - name: Install iterm2
+      homebrew_cask:
+        name: iterm2
