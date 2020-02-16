@@ -10,6 +10,8 @@ Installs zsh with powerlevel 9k and iterm2 with nerdfont
   ```
   chsh -s /bin/zsh
   ```
+## Related pages
+[Zsh Reference Card](http://www.bash2zsh.com/zsh_refcard/refcard.pdf)
 
 ## License
 [GPLv3](LICENSE)
