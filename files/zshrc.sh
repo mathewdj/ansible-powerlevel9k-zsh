@@ -1,7 +1,11 @@
 export PATH="$PATH:$HOME/bash_functions"
+for bash_function in ~/bash_functions/**/*.sh; do source $bash_function; echo $bash_function; done
+
+export PATH="$PATH:$HOME/zsh_functions"
+for zsh_function in ~/zsh_functions/**/*.sh; do source $zsh_function; echo $zsh_function; done
+
 source ${HOME}/.bash_functions
 source ${HOME}/.bash_aliases
-for bash_function in ~/bash_functions/**/*.sh; do source $bash_function; echo $bash_function; done
 
 plugins=(
   ansible 

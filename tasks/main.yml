@@ -11,7 +11,14 @@
         dest: "{{ lookup('env', 'HOME') }}/{{ item.dest }}"
       with_items:
         - { src: "zshrc.sh", dest: ".zshrc"  }
-    
+
+    - name: Copy zsh functions to ~/zsh_functions
+      copy:
+        src: "{{ item }}"
+        dest: "{{ lookup('env', 'HOME') }}/zsh_functions/"
+      with_fileglob:
+        - "files/zsh_functions/*"
+
     - name: "Create {{ lookup('env', 'HOME') }}/powerlevel9k"
       file:
         dest: "{{ lookup('env', 'HOME') }}/powerlevel9k"
